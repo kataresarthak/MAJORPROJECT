@@ -29,7 +29,10 @@
       >Edit</a
     >
     <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
-      <button class="btn btn-dark offset-5">Delete</button>
+      <button class="btn btn-dark offset-4">Delete</button>
+    </form>
+    <form method="POST" action="/listings/<%= listing._id %>/book">
+      <button class="btn btn-success offset-10">Book</button>
     </form>
   </div>
   <% } %>
@@ -43,19 +46,8 @@
       novalidate
       class="needs-validation"
     >
-      <!-- <div class="mb-3 mt-3">
-        <label for="rating" class="form-label">Rating </label>
-        <input
-          type="range"
-          min="1"
-          max="5"
-          id="rating"
-          name="review[rating]"
-          class="form-range"
-        />
-      </div> -->
       <div class="mb-3 mt-3">
-        <label for="rating" class="form-label">Rating </label>
+        <label for="rating" class="form-label">Rating</label>
         <fieldset class="starability-slot">
           <input
             type="radio"
