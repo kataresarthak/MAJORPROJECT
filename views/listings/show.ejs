@@ -19,9 +19,11 @@
       <p class="card-text"><%= listing.country %></p>
     </div>
   </div>
-  <br />
-
-  <% if(currentUser && listing.owner._id.equals(currentUser._id)) {%>
+  <% if(currentUser && !listing.owner._id.equals(currentUser._id)) {%>
+  <form method="POST" action="/listings/<%= listing._id %>/book">
+    <button class="btn col-1 btn-success offset-3 mb-2">Book</button>
+  </form>
+  <% } %> <% if(currentUser && listing.owner._id.equals(currentUser._id)) {%>
   <div class="btns">
     <a
       href="/listings/<%= listing._id %>/edit"
@@ -30,9 +32,6 @@
     >
     <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
       <button class="btn btn-dark offset-4">Delete</button>
-    </form>
-    <form method="POST" action="/listings/<%= listing._id %>/book">
-      <button class="btn btn-success offset-10">Book</button>
     </form>
   </div>
   <% } %>
