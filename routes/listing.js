@@ -9,6 +9,23 @@ const multer = require("multer");
 const { storage } = require("../cloudConfig.js");
 const upload = multer({ storage });
 
+// Route to book a listing
+router.post("/:id/book", async (req, res) => {
+  const { id } = req.params;
+
+  // Optional: Fetch listing to confirm it exists
+  const listing = await Listing.findById(id);
+  if (!listing) {
+    req.flash("error", "Listing not found.");
+    return res.redirect("/listings");
+  }
+
+  // (Optional: Save booking in DB)
+
+  req.flash("success", "Successfully booked your listing!");
+  res.redirect(`/listings/${id}`);
+});
+
 // Route for search functionality
 router.get("/search", async (req, res) => {
   const query = req.query.q || "";
