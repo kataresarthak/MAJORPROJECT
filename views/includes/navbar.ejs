@@ -3,68 +3,99 @@
     background-color: #fe424d;
     color: white;
     border-radius: 25px;
-    padding: 0 1rem 0 1rem;
+    padding: 0.4rem 1rem;
   }
+
   .search-btn:hover {
     background-color: #e03a44;
     color: white;
   }
 
-  .search-btn i {
-    display: inline;
-    margin-right: 0.5rem;
-  }
-
   .search-input {
     border-radius: 25px;
-    padding: 0.5rem 3rem 0.5rem 3rem;
-    font-size: 1rem;
+    font-size: 0.9rem;
+  }
+
+  @media (max-width: 768px) {
+    .search-form {
+      margin: 1rem 0;
+      width: 100%;
+    }
+
+    .search-form input {
+      margin-bottom: 0.5rem;
+    }
   }
 </style>
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+
+<nav class="navbar navbar-expand-md navbar-light bg-light border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"
-      ><i class="fa-solid fa-compass"></i
-    ></a>
+
+    <!-- Logo -->
+    <a class="navbar-brand" href="/listings">
+      <i class="fa-solid fa-compass"></i>
+    </a>
+
+    <!-- Toggle Button -->
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarNavAltMarkup"
+      data-bs-target="#navbarNav"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="/listings">HOME</a>
-      </div>
-      <div class="navbar-nav ms-auto">
-        <form
-          class="d-flex"
-          role="search"
-          action="/listings/search"
-          method="GET"
-        >
-          <input
-            class="form-control me-2 search-input"
-            type="search"
-            name="q"
-            placeholder="Search your listing"
-          />
-          <button class="btn search-btn" type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>Search
-          </button>
-        </form>
-      </div>
-      <div class="navbar-nav ms-auto">
-        <a class="nav-link" href="/listings/new">Add New Listings</a>
+
+    <!-- Collapsible Content -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+
+      <!-- Left Side -->
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/listings">HOME</a>
+        </li>
+      </ul>
+
+      <!-- Center Search -->
+      <form
+        class="d-flex search-form"
+        role="search"
+        action="/listings/search"
+        method="GET"
+      >
+        <input
+          class="form-control me-2 search-input"
+          type="search"
+          name="q"
+          placeholder="Search your listing"
+        />
+        <button class="btn search-btn" type="submit">
+          <i class="fa-solid fa-magnifying-glass me-1"></i>Search
+        </button>
+      </form>
+
+      <!-- Right Side -->
+      <ul class="navbar-nav ms-md-3">
+        <li class="nav-item">
+          <a class="nav-link" href="/listings/new">Add New Listings</a>
+        </li>
+
         <% if (!currentUser) { %>
-        <a class="nav-link" href="/signup"><b>Sign up</b></a>
-        <a class="nav-link" href="/login"><b>Log in</b></a>
-        <% } %> <% if (currentUser) { %>
-        <a class="nav-link" href="/logout">Log out</a>
+          <li class="nav-item">
+            <a class="nav-link" href="/signup"><b>Sign up</b></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/login"><b>Log in</b></a>
+          </li>
         <% } %>
-      </div>
+
+        <% if (currentUser) { %>
+          <li class="nav-item">
+            <a class="nav-link" href="/logout">Log out</a>
+          </li>
+        <% } %>
+      </ul>
+
     </div>
   </div>
 </nav>
