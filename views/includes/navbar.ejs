@@ -3,7 +3,8 @@
     background-color: #fe424d;
     color: white;
     border-radius: 25px;
-    padding: 0.4rem 1rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
   }
 
   .search-btn:hover {
@@ -13,18 +14,33 @@
 
   .search-input {
     border-radius: 25px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    padding: 0.4rem 1rem;
+  }
+
+  /* Make search shrink nicely */
+  .search-form {
+    flex: 1;
+    max-width: 500px;
+    margin: 0 1rem;
   }
 
   @media (max-width: 768px) {
-    .search-form {
-      margin: 1rem 0;
-      width: 100%;
+    .search-input {
+      font-size: 0.8rem;
     }
 
-    .search-form input {
-      margin-bottom: 0.5rem;
+    .search-btn {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.6rem;
     }
+  }
+
+  /* Toggle dropdown menu styling */
+  .mobile-menu {
+    background: white;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
   }
 </style>
 
@@ -36,48 +52,40 @@
       <i class="fa-solid fa-compass"></i>
     </a>
 
+    <!-- Search Bar (Always Visible) -->
+    <form
+      class="d-flex search-form"
+      role="search"
+      action="/listings/search"
+      method="GET"
+    >
+      <input
+        class="form-control me-2 search-input"
+        type="search"
+        name="q"
+        placeholder="Search your listing"
+      />
+      <button class="btn search-btn" type="submit">
+        <i class="fa-solid fa-magnifying-glass me-1"></i>
+      </button>
+    </form>
+
     <!-- Toggle Button -->
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
-      data-bs-target="#navbarNav"
+      data-bs-target="#mobileMenu"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Collapsible Content -->
-    <div class="collapse navbar-collapse" id="navbarNav">
+    <!-- Collapsible Right Menu -->
+    <div class="collapse navbar-collapse justify-content-end" id="mobileMenu">
+      <ul class="navbar-nav mobile-menu text-md-end">
 
-      <!-- Left Side -->
-      <ul class="navbar-nav me-auto">
         <li class="nav-item">
-          <a class="nav-link" href="/listings">HOME</a>
-        </li>
-      </ul>
-
-      <!-- Center Search -->
-      <form
-        class="d-flex search-form"
-        role="search"
-        action="/listings/search"
-        method="GET"
-      >
-        <input
-          class="form-control me-2 search-input"
-          type="search"
-          name="q"
-          placeholder="Search your listing"
-        />
-        <button class="btn search-btn" type="submit">
-          <i class="fa-solid fa-magnifying-glass me-1"></i>Search
-        </button>
-      </form>
-
-      <!-- Right Side -->
-      <ul class="navbar-nav ms-md-3">
-        <li class="nav-item">
-          <a class="nav-link" href="/listings/new">Add New Listings</a>
+          <a class="nav-link" href="/listings/new">Add New Listing</a>
         </li>
 
         <% if (!currentUser) { %>
@@ -94,8 +102,9 @@
             <a class="nav-link" href="/logout">Log out</a>
           </li>
         <% } %>
-      </ul>
 
+      </ul>
     </div>
+
   </div>
 </nav>
