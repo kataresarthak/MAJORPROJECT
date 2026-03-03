@@ -102,6 +102,7 @@ app.use((req, res, next) => {
   res.locals.error = req.flash("error");
   res.locals.currentUser = req.user;
   res.locals.isHomePage = false;
+  res.locals.showSearch = false;
   next();
 });
 
