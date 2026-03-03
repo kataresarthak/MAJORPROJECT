@@ -1,12 +1,13 @@
 <style>
   .search-btn {
-    background-color: #fe424d;
+    background-color: #13b5c7;
     color: white;
     border-radius: 25px;
     padding: 0 1rem 0 1rem;
+    white-space: nowrap;
   }
   .search-btn:hover {
-    background-color: #e03a44;
+    background-color: #0d97a8;
     color: white;
   }
 
@@ -17,27 +18,40 @@
 
   .search-input {
     border-radius: 25px;
-    padding: 0.5rem 3rem 0.5rem 3rem;
+    padding: 0.5rem 1.5rem;
     font-size: 1rem;
+    min-width: 0;
+  }
+
+  @media (max-width: 767.98px) {
+    .search-input {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+    .search-btn {
+      padding: 0.4rem 1rem;
+    }
   }
 </style>
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"
-      ><i class="fa-solid fa-compass"></i
-    ></a>
+    <a class="navbar-brand" href="/"
+      ><img src="/logo.png" alt="logo" style="height: 2.5rem; width: auto; object-fit: contain;"
+    /></a>
+    <a class="navbar-brand fw-bold" href="/" style="font-size: 1.25rem; color: #1a3566; text-decoration: none;">StayFinder</a>
     <button
       class="navbar-toggler"
       type="button"
       data-bs-toggle="collapse"
       data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
     >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="/listings">Explore</a>
-      </div>
+      <% if (!isHomePage) { %>
       <div class="navbar-nav ms-auto">
         <form
           class="d-flex"
@@ -56,8 +70,15 @@
           </button>
         </form>
       </div>
+      <% } %>
+      
       <div class="navbar-nav ms-auto">
+        <a class="nav-link fw-semibold" href="/listings" style="color: #13b5c7;">
+          <i class="fa-solid fa-binoculars me-1"></i>Explore
+        </a>
+        <% if (!isHomePage) { %>
         <a class="nav-link" href="/listings/new">Add New Listings</a>
+        <% } %>
         <% if (!currentUser) { %>
         <a class="nav-link" href="/signup"><b>Sign up</b></a>
         <a class="nav-link" href="/login"><b>Log in</b></a>
