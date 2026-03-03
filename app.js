@@ -124,11 +124,7 @@ app.use((err, req, res, next) => {
   res.status(statusCode).render("error.ejs", { message });
 });
 
-// Only start server when running locally (not on Vercel)
-if (process.env.NODE_ENV !== "production") {
-  app.listen(8080, () => {
-    console.log("Server is listening on port 8080");
-  });
-}
-
-module.exports = app;
+const port = process.env.PORT || 8080;
+app.listen(port, () => {
+  console.log(`Server is listening on port ${port}`);
+});
